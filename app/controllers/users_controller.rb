@@ -9,9 +9,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p "\n\n\n\n"
-    p current_user
-    mmmmmmmmmmm
     if current_user.update(name: params[:name], email: params[:email], password: params[:password], phone_number: params[:phone_number], company_name: params[:company_name])
       render json: { success: "Profile Updated Successfully!" }
     else
