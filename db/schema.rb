@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_121712) do
+ActiveRecord::Schema.define(version: 2022_01_27_094214) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_121712) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "phone_number"
     t.string "company_name"
+    t.string "otp_secret_key"
+    t.string "test_otp_code"
   end
 
 end
