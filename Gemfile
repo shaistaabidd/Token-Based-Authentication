@@ -41,3 +41,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'simple_command'
+gem 'twilio-ruby'
+gem 'redis'
+gem 'redis-rails'
+gem 'sidekiq'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'faker'
+gem "letter_opener"
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.1'
+  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+end
+gem "letter_opener", group: :development
+gem 'active_model_otp'
