@@ -1,19 +1,24 @@
 class RegisterUser
     prepend SimpleCommand
   
-    def initialize(name, email, password, phone_number, company_name)
+    def initialize(name, email, password, phone_number, company_name, password_confirmation)
         @name = name
         @email = email
         @password = password
         @phone_number = phone_number
         @company_name = company_name
+        @password_confirmation = password_confirmation
     end
   
     def call
-
         if user
-            user = User.create!(name: @name, email: @email, password: @password, phone_number: @phone_number, company_name: @company_name)
-            JsonWebToken.encode(user_id: user.id)
+            if @password == @password_confirmation
+                user = User.create!(name: @name, email: @email, password: @password, phone_number: @phone_number, company_name: @company_name, password_confirmation: @password_confirmation)
+                JsonWebToken.encode(user_id: user.id)
+            else
+                return errors.add :error, 'Password confirmation is not matched with your password. '
+            end
+
         end
     end
 
@@ -22,6 +27,7 @@ class RegisterUser
     attr_accessor :email, :password
   
     def user
+        
         return errors.add :user_authentication, 'Invalid Credentials! Email, Phone Number and Password could not be empty.' if not @email.present? or not @phone_number.present? or not @password.present?
         user = User.find_by_email(email)
         return errors.add :user_authentication, 'User already exists!' if user.present?
