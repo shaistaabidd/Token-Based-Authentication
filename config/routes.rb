@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   post 'sign_up', to: 'authentication#sign_up'
   patch 'update', to: 'profiles#update'
   post 'verify_otp', to: 'authentication#verify_otp'
+  post 'forgot_password', to: 'passwords#forgot_password'
+  post 'reset_password', to: 'passwords#reset_password'
 end

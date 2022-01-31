@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_161826) do
+ActiveRecord::Schema.define(version: 2022_01_31_083346) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_161826) do
     t.string "otp_secret_key"
     t.string "test_otp_code"
     t.string "password_confirmation"
+    t.string "password_token"
   end
 
 end
