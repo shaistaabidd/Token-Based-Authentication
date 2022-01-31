@@ -11,7 +11,7 @@ class PasswordsController < ApplicationController
                 send_reset_password_email(user, token)
                 render json: {message: 'A password reset token has been sent to your email.'}, status: :ok
             else
-                return render json: {error: 'Your account with this email does not exists! Please try again'}, status: :not_found
+                return render json: {error: 'Your account with this email does not exist! Please try again'}, status: :not_found
             end
         
         end
