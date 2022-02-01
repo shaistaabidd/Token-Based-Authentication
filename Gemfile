@@ -56,3 +56,4 @@ group :development, :test do
 end
 gem "letter_opener", group: :development
 gem 'active_model_otp'
+gem 'cancancan'
