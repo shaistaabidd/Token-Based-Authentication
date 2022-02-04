@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post 'verify_otp', to: 'authentication#verify_otp'
   post 'forgot_password', to: 'passwords#forgot_password'
   post 'reset_password', to: 'passwords#reset_password'
-  post 'create_gig', to: 'gigs#create_gig'
-  post 'update_gig', to: 'gigs#update_gig'
-  post 'destroy_gig', to: 'gigs#destroy_gig'
+  # post 'create_gig', to: 'gigs#create_gig'
+  # post 'update_gig', to: 'gigs#update_gig'
+  # post 'destroy_gig', to: 'gigs#destroy_gig'
+  resources :gigs
 end
