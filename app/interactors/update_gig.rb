@@ -18,7 +18,7 @@ class UpdateGig
 
     def gig_params
         if not params[:gig].present?
-            context.fail!(message:'When assigning attributes, you must pass a hash as an argument. e,g gig[name] .' ,status: :unprocessable_entity)
+            context.fail!(message:'To update gig, you must pass a hash as an argument. e,g gig[name] .' ,status: :unprocessable_entity)
         else
             params.require(:gig).permit(:user_id, :name,:description,:amount,:review_count,:average_star)
         end
