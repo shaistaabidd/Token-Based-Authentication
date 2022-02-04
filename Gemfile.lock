@@ -115,6 +115,7 @@ GEM
       activesupport (>= 5.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    interactor (3.1.2)
     jwt (2.3.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -248,6 +249,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker
+  interactor
   jwt
   letter_opener
   listen (~> 3.3)
