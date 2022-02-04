@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
           name: @result.user.name,
           email: @result.user.email,
           phone_number: @result.user.phone_number,
-          created_at: @result.user.created_at.strftime("%d-%m-%Y, %z %H:%M:%S"),
+          updated_at: @result.user.created_at.strftime("%d-%m-%Y, %z %H:%M:%S"),
           status: @result.message
         }
       },status: :ok
