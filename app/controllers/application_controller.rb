@@ -6,9 +6,9 @@ class ApplicationController < ActionController::API
 
     def authenticate_request
         @current_user = AuthorizeApiRequest.call(request.headers).result
-        render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+        render json: { error: 'Not Authorized.' }, status: 401 unless @current_user
     end
     rescue_from CanCan::AccessDenied do |exception|
-        render json: { error: 'You are not authorized!' }, status: 401
+        render json: { error: 'Access Denied. You are not authorized!' }, status: 401
     end
 end
