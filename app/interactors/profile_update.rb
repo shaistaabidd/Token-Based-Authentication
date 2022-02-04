@@ -21,7 +21,7 @@ class ProfileUpdate
 
   def user_params
     if not params[:user].present?
-      context.fail!(message:'When assigning attributes, you must pass a hash as an argument. e,g user[name] .' ,status: :unprocessable_entity)
+      context.fail!(message:'To update profile, you must pass a hash as an argument. e,g user[name] .' ,status: :unprocessable_entity)
     else
       params.require(:user).permit(:name, :email,:phone_number,:password,:password_confirmation)
     end
