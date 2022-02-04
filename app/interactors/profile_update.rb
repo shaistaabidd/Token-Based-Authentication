@@ -3,7 +3,9 @@ class ProfileUpdate
 
   def call
     user_params
-    if params[:user].present? and not current_user.update(user_params)
+    if current_user.update(user_params)
+      context.message = "Profile Updated Successfully!" 
+    else
       context.fail!(message: current_user.errors,status: :unprocessable_entity)
     end
     context.user = current_user
@@ -18,10 +20,10 @@ class ProfileUpdate
   end
 
   def user_params
-    if not params[:user].present? and params.keys.count > 2
+    if not params[:user].present?
       context.fail!(message:'When assigning attributes, you must pass a hash as an argument. e,g user[name] .' ,status: :unprocessable_entity)
     else
-      params.require(:user).permit(:name, :email,:phone_number,:password,:password_confirmation) if params[:user].present?
+      params.require(:user).permit(:name, :email,:phone_number,:password,:password_confirmation)
     end
   end
 
