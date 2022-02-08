@@ -7,6 +7,7 @@ class OtpVerification
         user_present?
         verify_otp_code
         context.token = JsonWebToken.encode(user_id: @user.id)
+        @user.update(auth_token: context.token)
         context.message = "Verification Successful!" 
         context.user = @user
     end

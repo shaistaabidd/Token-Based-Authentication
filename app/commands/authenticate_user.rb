@@ -8,7 +8,9 @@ class AuthenticateUser
 
   def call
     if user.present?
-      return {token: JsonWebToken.encode(user_id: user.id), user: user}
+      token = JsonWebToken.encode(user_id: user.id)
+      user.update(auth_token: token)
+      return {token: token, user: user}
     end
   end
 

@@ -50,5 +50,14 @@ class AuthenticationController < ApplicationController
       end
     end
 
-
+    def sign_out
+      current_user = AuthorizeApiRequest.call(request.headers).result
+      if current_user.present? and current_user.auth_token.present? 
+        current_user.auth_token = nil
+        current_user.save!
+        render json: { message: "Logout successfully!" }, status: :ok
+      else
+        render json: { message: "You are already signed out!" }, status: :ok
+      end
+    end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'otp_sign_in', to: 'authentication#otp_sign_in'
   post 'sign_in', to: 'authentication#sign_in'
   post 'sign_up', to: 'authentication#sign_up'
+  delete 'sign_out', to: 'authentication#sign_out'
   patch 'update', to: 'profiles#update'
   post 'verify_otp', to: 'otps#verify_otp'
   post 'forgot_password', to: 'passwords#forgot_password'

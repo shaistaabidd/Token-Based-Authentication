@@ -17,7 +17,11 @@ class AuthorizeApiRequest
       #if (User.pluck(:id).include? decoded_auth_token[:user_id] if decoded_auth_token)
       if (User.find(decoded_auth_token[:user_id]) if decoded_auth_token)
         @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-        @user || errors.add(:token, 'Invalid token') && nil
+        if @user.auth_token.present?
+          return @user
+        else
+          errors.add(:token, 'Invalid token') && nil
+        end
       end
     end
   
