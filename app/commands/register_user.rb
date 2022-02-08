@@ -1,24 +1,22 @@
 class RegisterUser
     prepend SimpleCommand
   
-    def initialize(name, email, password, phone_number, company_name, password_confirmation)
-        @name = name
-        @email = email
-        @password = password
-        @phone_number = phone_number
-        @company_name = company_name
-        @password_confirmation = password_confirmation
+    def initialize(params)
+        @params = params
     end
   
     def call
-        if user
-            if @password == @password_confirmation
-                user = User.create!(name: @name, email: @email, password: @password, phone_number: @phone_number, company_name: @company_name, password_confirmation: @password_confirmation)
-                return {token: JsonWebToken.encode(user_id: user.id), user: user}
-            else
-                return errors.add :error, 'Password confirmation is not matched with your password. '
+        if @params[:user].present?
+            if user 
+                @user = User.new(user_params)
+                if @user.save
+                    return {token: JsonWebToken.encode(user_id: @user.id), user: @user}
+                else
+                    return errors.add :error, @user.errors, status: :unprocessable_entity
+                end
             end
-
+        else
+            return errors.add :user_authentication, 'To create account, you must pass a hash as an argument. e,g user[name] .' ,status: :unprocessable_entity     
         end
     end
 
@@ -28,12 +26,16 @@ class RegisterUser
   
     def user
         
-        return errors.add :user_authentication, 'Invalid Credentials! param email, phone_number and password cannot be empty.' if not @email.present? or not @phone_number.present? or not @password.present?
-        user = User.find_by_email(email)
+        return errors.add :user_authentication, 'Invalid Credentials! param user[email], user[phone_number] and user[password] cannot be empty.' if not @params[:user][:email].present? or not @params[:user][:phone_number].present? or not @params[:user][:password].present?
+        user = User.find_by_email(@params[:user][:email])
         return errors.add :user_authentication, 'User already exists!' if user.present?
-        user = User.find_by(phone_number: @phone_number)
-        return errors.add :user_authentication, 'Phone number is already taken!' if user.present? and @phone_number == user.phone_number
+        user = User.find_by(phone_number: @params[:user][:phone_number])
+        return errors.add :user_authentication, 'Phone number is already taken!' if user.present? and @params[:user][:phone_number] == user.phone_number
         true
+    end
+
+    def user_params
+        @params.require(:user).permit(:name,:email,:phone_number,:company_name,:password,:password_confirmation)
     end
   
 end

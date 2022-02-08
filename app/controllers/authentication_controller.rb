@@ -32,7 +32,7 @@ class AuthenticationController < ApplicationController
     end
 
     def sign_up
-      command = RegisterUser.call(params[:name], params[:email], params[:password], params[:phone_number], params[:company_name], params[:password_confirmation])
+      command = RegisterUser.call(params)
 
       if command.success?
         render json: {
