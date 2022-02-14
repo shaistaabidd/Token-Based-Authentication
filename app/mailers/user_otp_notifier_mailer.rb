@@ -1,7 +1,7 @@
 class UserOtpNotifierMailer < ApplicationMailer
     default :from => 'support@spl.com'
 
-    def send_otp_code_on_email(user, otp_code)
+    def send_otp_code_on_email(user)
         @user = user
         mail( :to => @user.email,
         :subject => 'OTP verification code!',

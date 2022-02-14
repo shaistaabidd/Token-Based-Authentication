@@ -1,7 +1,7 @@
 class PasswordResetMailer < ApplicationMailer
     default :from => 'support@spl.com'
 
-    def send_password_reset_email(user, otp_code)
+    def send_password_reset_email(user)
         @user = user
         mail( :to => @user.email,
         :subject => 'Password Reset Token!',
