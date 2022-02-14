@@ -10,7 +10,7 @@ class OtpSignin
         if user.present?
           generate_otp_code
           send_otp_code_on_sms
-          UserOtpNotifierMailer.send_otp_code_on_email(user, @otp_code).deliver_now
+          UserOtpNotifierMailer.send_otp_code_on_email(user).deliver_now
           'An activation code would be sent to your email and phone number.'
         end
       else

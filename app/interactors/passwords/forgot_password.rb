@@ -7,7 +7,7 @@ module Passwords
             if params[:user].present?
                 user_present?
                 token = @user.generate_password_token
-                send_reset_password_email(@user, token)
+                send_reset_password_email(@user)
                 context.message = 'A password reset token has been sent to your email.'
             else
                 context.fail!(message: 'You must pass a hash as an argument. e,g user[email] .', status: :unprocessable_entity)
@@ -29,8 +29,8 @@ module Passwords
             end
         end
 
-        def send_reset_password_email(user, token)
-            PasswordResetMailer.send_password_reset_email(user, token).deliver_now
+        def send_reset_password_email(user)
+            PasswordResetMailer.send_password_reset_email(user).deliver_now
         end
     end
 end
