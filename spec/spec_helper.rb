@@ -93,7 +93,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  config.before(:each) do
-    stub_const("Twilio::REST::Client", FakeTwilio)
-  end
+  # config.before(:each) do
+  #   stub_const("Twilio::REST::Client", FakeTwilio)
+  # end
 end

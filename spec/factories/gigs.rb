@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :gig do
-    name { "MyString" }
-    description { "MyText" }
+    name { "Web Development"}
+    description {"Will develop amazing websites for you"}
     amount { "9.99" }
     review_count { 1 }
-    average_star { "MyString" }
+    average_star { "78" }
   end
 end
