@@ -2,7 +2,7 @@ class AuthenticationController < ApplicationController
     skip_before_action :authenticate_request
 
     def otp_sign_in
-      command = OtpSignin.call(params[:email], params[:password])
+      command = OtpSignin.call(params)
    
       if command.success?
         render json: { message: command.result }
@@ -13,7 +13,7 @@ class AuthenticationController < ApplicationController
     end
    
     def sign_in
-      command = AuthenticateUser.call(params[:email], params[:password])
+      command = AuthenticateUser.call(params)
    
       if command.success?
         render json: {

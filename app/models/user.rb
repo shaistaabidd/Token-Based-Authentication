@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_one_time_password 
     has_many :gigs, dependent: :destroy
+    validates :email, presence: :ture, uniqueness: :true
+    validates :phone_number, presence: :ture, uniqueness: :true
     validate :password_match, :if => Proc.new { |user| user.password_digest_changed?}
     def generate_password_token
         token = SecureRandom.hex(10)
